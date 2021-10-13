@@ -1,0 +1,65 @@
+# Happy Coding!
+service: prestamistasback
+frameworkVersion: '2'
+
+custom:
+  bucket: my-images-s3
+  default_stage: dev
+  packageLimit: "2mb"
+#   apigwBinary:
+#     types:
+#       - '*/*'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 256
+  lambdaHashingVersion: 20201221
+  vpc:
+    securityGroupIds:
+      - sg-07741ab40699f321d
+    subnetIds:
+      - subnet-01cf7dbd978cb7218
+      - subnet-04c7fcd4e679cd041
+  stage: ${opt:stage, self:custom.default_stage}
+  region: us-east-1
+  layers:
+    - arn:aws:lambda:us-east-1:123180847171:layer:CommonModelsDb:7
+  iam:
+   role:
+     statements:
+       - Effect: "Allow"
+         Action:
+           - "s3:GetObject"
+         Resource: arn:aws:s3:::my-images-s3
+       - Effect: "Allow"
+         Action:
+           - "s3:PutObject"
+         Resource: arn:aws:s3:::my-images-s3
+  environment:
+    AWS_COGNITO_USER_POOL_ID: us-east-1_LYwBOBYE1
+    AWS_COGNITO_CLIENT_ID: 15u0763djk770damotval2g3vc
+    AWS_COGNITO_REGION: us-east-1
+         #for migrations sequelize
+  # environment:
+  #   DB_DIALECT: 'database_dialect' /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+  #   DB_NAME: 'database_name'
+  #   DB_USERNAME: 'database_username'
+  #   DB_PASSWORD: 'database_password'
+  #   DB_HOST: 'database_host'
+  #   DB_PORT: 'database_port'
+
+
+
+# you can add packaging information here
+package:
+ individually: true
+ patterns:
+   - '!node_modules/**'
+
+functions:
+  # Archivo de apis
+  '${file(apis.serverless.yml)}'

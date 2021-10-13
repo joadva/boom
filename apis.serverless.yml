@@ -1,0 +1,408 @@
+hello:
+   handler: handler.hello
+
+GetAll:
+  handler: cases/Cliente/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: Cliente
+        authorizer: authorizerFunc
+
+GetOneCliente:
+  handler: cases/Cliente/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /Cliente/{id}
+
+RegisterCliente:
+  handler: cases/Cliente/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Cliente/
+
+DeleteCliente:
+  handler: cases/Cliente/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /Cliente/{id}
+
+UpdateCliente:
+  handler: cases/Cliente/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Cliente/{id}
+
+#  END POINST DATOS BANCO
+GetAllBanco:
+  handler: cases/DatosBanco/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /DatosBancarios
+
+GetOneBanco:
+  handler: cases/DatosBanco/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /DatosBancarios/{id}
+
+RegisterBanco:
+  handler: cases/DatosBanco/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /DatosBancarios/
+
+DeleteBanco:
+  handler: cases/DatosBanco/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /DatosBancarios/{id}
+
+UpdateBanco:
+  handler: cases/DatosBanco/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /DatosBancarios/{id}
+#Cognito
+Logs:
+  handler: cases/Prestario/Log.Log
+  events:
+    - http:
+        method: POST
+        path: /Log/
+
+register:
+  handler: cases/Login/cognitoService.register
+  events:
+    - httpApi:
+        path: /register
+        method: post
+Login:
+  handler: cases/Login/LoginCognito.Login
+  events:
+    - httpApi:
+        path: /Login
+        method: post
+Password:
+  handler: cases/Login/Password.Password
+  events:
+    - httpApi:
+        path: /Password
+        method: post
+# # Domicilio
+GetAllDom:
+  handler: cases/Domicilio/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /Domicilio
+GetOneDomicilio:
+  handler: cases/Domicilio/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /Domicilio/{id}
+RegisterDomicilio:
+  handler: cases/Domicilio/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Domicilio/
+DeleteDomicilio:
+  handler: cases/Domicilio/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /Domicilio/{id}
+UpdateDomicilio:
+  handler: cases/Domicilio/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Domicilio/{id}
+# # # End Points DNI
+GetAllDNI:
+  handler: cases/DNI/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /DNI
+GetOneDNI:
+  handler: cases/DNI/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /DNI/{id}
+DeleteImages:
+  handler: cases/DNI/DeleteImg.DeleteFile
+  events:
+    - http:
+        path: delete-image
+        method: post
+        cors: true
+  environment:
+    bucket: my-images-s3
+uploadImages:
+  handler: cases/DNI/UploadImg.UploadImg
+  events:
+    - http:
+        path: /upload-image
+        method: post
+        cors: true
+        authorizer: authorizerFunc
+  environment:
+    bucket: my-images-s3
+
+# RegisterDNI:
+#   handler: cases/DNI/Register.Register
+#   events:
+#     - http:
+#         method: POST
+#         path: /DNI/
+# DeleteDNI:
+#   handler: cases/DNI/Delete.Delete
+#   events:
+#     - http:
+#         method: DELETE
+#         path: /DNI/{id}
+# UpdateDNI:
+#   handler: cases/DNI/Update.Update
+#   environment:
+#     bucket: arn:aws:s3:::prestab
+#   events:
+#     - http:
+#         method: PUT
+#         path: /DNI/{id}
+
+# Pawordt:
+#   handler: cases/Prestario/ForgotPassword.ForgotPassword
+#   events:
+#     - http:
+#         method: GET
+#         path: /ForgotPassword
+# # # # End Points Interes
+GetAllInteres:
+  handler: cases/Interes/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /Interes
+GetOneInteres:
+  handler: cases/Interes/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /Interes/{id}
+RegisterInteres:
+  handler: cases/Interes/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Interes/
+DeleteInteres:
+  handler: cases/Interes/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /Interes/{id}
+UpdateInteres:
+  handler: cases/Interes/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Interes/{id}
+# #End Points Pagos
+GetAllPagos:
+  handler: cases/Pagos/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /Pagos
+GetOnePagos:
+  handler: cases/Pagos/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /Pagos/{id}
+RegisterPagos:
+  handler: cases/Pagos/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Pagos/
+DeletePagos:
+  handler: cases/Pagos/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /Pagos/{id}
+UpdatePagos:
+  handler: cases/Pagos/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Pagos/{id}
+# # # End Points Roles
+# GetAllRoles:
+#   handler: cases/Roles/GetAll.GetAll
+#   events:
+#     - http:
+#         method: GET
+#         path: /Roles
+# GetOneRoles:
+#   handler: cases/Roles/GetOne.GetOne
+#   events:
+#     - http:
+#         method: GET
+#         path: /Roles/{id}
+# RegisterRoles:
+#   handler: cases/Roles/Register.Register
+#   events:
+#     - http:
+#         method: POST
+#         path: /Roles/
+# DeleteRoles:
+#   handler: cases/Roles/Delete.Delete
+#   events:
+#     - http:
+#         method: DELETE
+#         path: /Roles/{id}
+# UpdateRoles:
+#   handler: cases/Roles/Update.Update
+#   events:
+#     - http:
+#         method: PUT
+#         path: /Roles/{id}
+# APIS NivelesCleinte
+GetAllNivelesCliente:
+  handler: cases/NivelesCliente/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /NivelesCliente
+GetOneNiveles:
+  handler: cases/NivelesCliente/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /NivelesCliente/{id}
+RegisterNivelesCliente:
+  handler: cases/NivelesCliente/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /NivelesCliente/
+DeleteNivelesCliente:
+  handler: cases/NivelesCliente/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /NivelesCliente/{id}
+UpdateNivelesCliente:
+  handler: cases/NivelesCliente/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /NivelesCliente/{id}
+# #APIS REFERENCIAS
+GetAllRef:
+  handler: cases/Referencias/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /Referencias
+GetOneReferencias:
+  handler: cases/Referencias/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /Referencias/{id}
+RegisterReferencias:
+  handler: cases/Referencias/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Referencias/
+# DeleteReferencias:
+#   handler: cases/Referencias/Delete.Delete
+#   events:
+#     - http:
+#         method: DELETE
+#         path: /Referencias/{id}
+UpdateReferencias:
+  handler: cases/Referencias/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Referencias/{id}
+#Apis Penalizacion:
+GetAllPenalizacion:
+  handler: cases/Penalizacion/GetAll.GetAll
+  events:
+    - http:
+        method: GET
+        path: /Penalizacion
+GetOnePenalizacion:
+  handler: cases/Penalizacion/GetOne.GetOne
+  events:
+    - http:
+        method: GET
+        path: /Penalizacion/{id}
+RegisterPenalizacion:
+  handler: cases/Penalizacion/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Penalizacion/
+DeletePenalizacion:
+  handler: cases/Penalizacion/Delete.Delete
+  events:
+    - http:
+        method: DELETE
+        path: /Penalizacion/{id}
+UpdatePenalizacion:
+  handler: cases/Penalizacion/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Penalizacion/{id}
+# #  Apis Prestario
+RegisterPrestario:
+  handler: cases/Prestario/Register.Register
+  events:
+    - http:
+        method: POST
+        path: /Prestario/
+
+authorizerFunc:
+  handler: cases/Cliente/Autorizer.authorizer
+
+UpdatePrestario:
+  handler: cases/Prestario/Update.Update
+  events:
+    - http:
+        method: PUT
+        path: /Prestario/{id}
+
+# Resgister3:
+#   handler: cases/Prestario/Register2.register2
+#   events:
+#     - http:
+#         method: POST
+#         path: /PrestarioLogin/
+
+# Resgister3:
+#   handler: cases/Login/Local.Login
+#   events:
+#     - http:
+#         method: POST
+#         path: /Local/

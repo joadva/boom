@@ -1,0 +1,38 @@
+{
+  "name": "PrestamistasBack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amazon-cognito-identity-js": "^5.2.0",
+    "aws-sdk": "^2.1001.0",
+    "axios": "^0.22.0",
+    "bcryptjs": "^2.4.3",
+    "busboy": "^0.3.1",
+    "express-validator": "^6.12.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.5",
+    "jwt-decode": "^3.1.2",
+    "jwt-simple": "^0.5.6",
+    "mariadb": "^2.5.4",
+    "multer": "^1.4.3",
+    "multer-s3": "^2.9.0",
+    "nodemailer": "^6.6.5",
+    "sequelize": "^6.6.5",
+    "serverless-http": "^2.7.0",
+    "serverless-sequelize-migrations": "^1.1.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "serverless-apigw-binary": "^0.4.4",
+    "serverless-offline": "^8.2.0",
+    "serverless-plugin-include-dependencies": "^5.0.0"
+  }
+}
